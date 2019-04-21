@@ -1,0 +1,30 @@
+[
+  {
+    "name": "endpoint",
+    "description": "The endpoint to make requests to",
+    "flags": ["-e", "--endpoint"],
+    "type": "text",
+    "default": null
+  },
+  {
+    "name": "number",
+    "description": "The number of requests to make",
+    "flags": ["-n", "--number"],
+    "type": "int",
+    "default": 0
+  },
+  {
+    "name": "method",
+    "description": "The HTTP method to use",
+    "flags": ["-m", "--method"],
+    "type": "text|lowercase",
+    "default": "get"
+  },
+  {
+    "name": "file",
+    "description": "File name to write to",
+    "flags": ["-f", "--file"],
+    "type": "text",
+    "default": "|date|"
+  }
+]

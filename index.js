@@ -12,7 +12,7 @@ const formatLog = require("./formatLog");
     axios[method](endpoint).catch(e => e.response)
   );
   const responses = await Promise.all(requests);
-  const writes = [];
+  const logs = [];
 
   responses.forEach((response, index) => {
     console.log(
@@ -20,9 +20,9 @@ const formatLog = require("./formatLog");
       `Status: ${response.status}\n`
     );
 
-    writes.push(formatLog(response, index, endpoint, method));
+    logs.push(formatLog(response, index, endpoint, method));
   });
 
-  await writeFile(`./logs/${file}.txt`, writes.join("\n"));
+  await writeFile(`./logs/${file}.txt`, logs.join("\n"));
   console.log(`Responses successfully written to logs/${file}.txt`);
 })();

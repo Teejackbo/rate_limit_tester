@@ -2,6 +2,7 @@ const { promisify } = require("util");
 const writeFile = promisify(require("fs").writeFile);
 const axios = require("axios");
 const ArgumentLoader = require("./arguments/ArgumentLoader");
+const formatLog = require("./formatLog");
 
 (async function main() {
   const args = new ArgumentLoader();
@@ -14,13 +15,12 @@ const ArgumentLoader = require("./arguments/ArgumentLoader");
   const writes = [];
 
   responses.forEach((response, index) => {
-    console.log(`Request ${index + 1} Complete\nStatus: ${response.status}\n`);
-
-    writes.push(
-      `Request ${index + 1}\nDate: ${response.headers.date || ""}\nStatus: ${
-        response.status
-      }\nURL: ${endpoint}\nMethod: ${method.toUpperCase()}\n`
+    console.log(
+      `Request ${index + 1} Complete\n`,
+      `Status: ${response.status}\n`
     );
+
+    writes.push(formatLog(response, index, endpoint, method));
   });
 
   await writeFile(`./logs/${file}.txt`, writes.join("\n"));

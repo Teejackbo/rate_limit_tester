@@ -4,7 +4,7 @@ const axios = require("axios");
 const ArgumentLoader = require("./arguments/ArgumentLoader");
 const formatLog = require("./formatLog");
 
-(async function main() {
+(async function() {
   const args = new ArgumentLoader();
   const { number, method, endpoint, file } = args.getArgs();
 
